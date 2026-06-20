@@ -14,20 +14,26 @@ function Hero() {
       <div
         className="
         absolute
-        left-4
-        md:left-8
-        top-1/2
-        -translate-y-1/2
-        text-[120px]
-        sm:text-[180px]
-        md:text-[320px]
-        font-black
-        text-white/[0.03]
-        select-none
+        inset-0
+        flex
+        items-center
+        justify-center
+        pointer-events-none
         z-10
         "
       >
-        2026
+        <h1
+          className="
+          text-[90px]
+          sm:text-[140px]
+          md:text-[260px]
+          font-black
+          text-white/[0.04]
+          tracking-widest
+          "
+        >
+          2026
+        </h1>
       </div>
 
       {/* Crystal Glow */}
@@ -51,27 +57,7 @@ function Hero() {
         "
       />
 
-      {/* Floating Problems - Desktop Only */}
-      <div className="hidden md:block absolute inset-0 z-10 pointer-events-none">
-
-        <div className="absolute top-48 left-24 text-white/60 text-xl">
-          📚 Assignment Overload
-        </div>
-
-        <div className="absolute top-80 right-24 text-white/60 text-xl">
-          📶 WiFi Failure
-        </div>
-
-        <div className="absolute bottom-72 left-48 text-white/60 text-xl">
-          💼 Placement Stress
-        </div>
-
-        <div className="absolute bottom-48 right-32 text-white/60 text-xl">
-          ⚠ Academic Pressure
-        </div>
-
-      </div>
-
+      
       {/* Particles */}
       <div className="absolute inset-0 z-10">
 
@@ -105,7 +91,7 @@ function Hero() {
           animate={{ opacity: 1 }}
           className="
           tracking-[8px]
-          md:tracking-[10px]
+          md:tracking-[12px]
           text-cyan-400
           uppercase
           text-xs
@@ -126,7 +112,6 @@ function Hero() {
           md:text-8xl
           font-black
           mt-4
-          md:mt-6
           leading-tight
           "
         >
@@ -142,7 +127,6 @@ function Hero() {
           transition={{ delay: 0.3 }}
           className="
           mt-6
-          md:mt-8
           text-xl
           sm:text-2xl
           md:text-4xl
@@ -178,7 +162,6 @@ function Hero() {
           whileTap={{ scale: 0.95 }}
           className="
           mt-10
-          md:mt-12
           px-8
           md:px-10
           py-4
@@ -193,6 +176,36 @@ function Hero() {
         >
           Begin The Journey →
         </motion.button>
+
+        {/* Timeline Preview */}
+        <div
+          className="
+          hidden
+          md:flex
+          items-center
+          gap-4
+          mt-12
+          text-cyan-300
+          text-sm
+          "
+        >
+          <span>2026</span>
+          <div className="w-10 h-[1px] bg-cyan-400" />
+
+          <span>2035</span>
+          <div className="w-10 h-[1px] bg-cyan-400" />
+
+          <span>2050</span>
+          <div className="w-10 h-[1px] bg-cyan-400" />
+
+          <span>2075</span>
+          <div className="w-10 h-[1px] bg-cyan-400" />
+
+          <span>2100</span>
+          <div className="w-10 h-[1px] bg-cyan-400" />
+
+          <span>2126</span>
+        </div>
 
       </div>
 

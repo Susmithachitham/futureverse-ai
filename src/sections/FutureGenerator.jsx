@@ -4,51 +4,108 @@ import { motion } from "framer-motion";
 const futureResponses = [
   {
     keywords: ["assignment", "assignments", "homework", "study"],
+
     year: "2035",
+
     role: "AI Learning Architect",
+
+    impact: 98,
+
+    quote:
+      "Every student gained access to a mentor that never sleeps.",
+
     response:
-      "By 2035, AI mentors understand your learning style and help you complete assignments through personalized guidance. Instead of spending hours searching for resources, your AI companion explains concepts instantly and creates a customized study plan for you.",
+      "AI mentors understand every student's learning style and automatically generate personalized study paths. Assignments become adaptive, engaging, and tailored to individual strengths.",
+
+    route: "2026 → 2035",
   },
 
   {
     keywords: ["wifi", "internet", "network", "connection"],
+
     year: "2050",
+
     role: "Global Connectivity Engineer",
+
+    impact: 97,
+
+    quote:
+      "Connectivity became as natural as air.",
+
     response:
-      "By 2050, connectivity becomes invisible. AI-powered networks automatically deliver information wherever you are. Students never experience WiFi failures because intelligent systems continuously optimize communication infrastructure.",
+      "AI-managed infrastructure eliminates connectivity failures. Information flows instantly across cities, campuses, and devices without interruptions.",
+
+    route: "2026 → 2050",
   },
 
   {
-    keywords: ["information", "too much", "confused", "overload"],
+    keywords: ["information", "confused", "overload"],
+
     year: "2075",
+
     role: "Neural Knowledge Explorer",
+
+    impact: 95,
+
+    quote:
+      "Knowledge became a thought away.",
+
     response:
-      "By 2075, neural interfaces allow humans to access knowledge instantly. Instead of reading thousands of pages, information flows directly into your mind, helping you learn faster and focus on creativity.",
+      "Neural interfaces allow students to access information instantly. Learning shifts from memorization to creativity, exploration, and innovation.",
+
+    route: "2026 → 2075",
   },
 
   {
     keywords: ["placement", "job", "career", "interview"],
+
     year: "2100",
+
     role: "Interplanetary Opportunity Creator",
+
+    impact: 99,
+
+    quote:
+      "Humans stopped searching for jobs and started creating worlds.",
+
     response:
-      "By 2100, people no longer compete for limited jobs. AI helps create entirely new industries, cities, and worlds. Opportunities are generated rather than searched for.",
+      "AI creates entirely new industries and opportunities across Earth and beyond. Careers become driven by passion and imagination rather than scarcity.",
+
+    route: "2026 → 2100",
   },
 
   {
     keywords: ["pressure", "stress", "mental", "anxiety"],
+
     year: "2126",
+
     role: "Humanity Wellness Guardian",
+
+    impact: 100,
+
+    quote:
+      "The greatest achievement of AI was helping humanity thrive.",
+
     response:
-      "By 2126, AI predicts stress before it becomes a problem. Personalized wellness systems help people maintain balance, health, productivity, and happiness throughout life.",
+      "Predictive wellness systems monitor health, stress, and productivity in real time. Mental wellbeing becomes a fundamental human right.",
+
+    route: "2026 → 2126",
   },
 ];
 
 function FutureGenerator() {
   const [question, setQuestion] = useState("");
-  const [chat, setChat] = useState([]);
+
+  const [loading, setLoading] = useState(false);
+
+  const [result, setResult] = useState(null);
 
   const generateFuture = () => {
     if (!question.trim()) return;
+
+    setLoading(true);
+
+    setResult(null);
 
     let found = null;
 
@@ -66,26 +123,32 @@ function FutureGenerator() {
     if (!found) {
       found = {
         year: "2150",
+
         role: "Future Innovator",
+
+        impact: 95,
+
+        quote:
+          "Every challenge becomes the seed of future innovation.",
+
         response:
-          "Every challenge faced by students becomes the inspiration for future innovation. The future belongs to those who dare to imagine solutions.",
+          "Humanity continues solving problems through imagination, collaboration, and artificial intelligence.",
+
+        route: "2026 → 2150",
       };
     }
 
-    setChat([
-      {
-        type: "user",
-        text: question,
-      },
-      {
-        type: "bot",
-        year: found.year,
-        role: found.role,
-        text: found.response,
-      },
-    ]);
+    setTimeout(() => {
+      setLoading(false);
 
-    setQuestion("");
+      setResult({
+        userQuestion: question,
+
+        ...found,
+      });
+
+      setQuestion("");
+    }, 2200);
   };
 
   return (
@@ -93,141 +156,233 @@ function FutureGenerator() {
       id="future"
       className="
       min-h-screen
+      px-6
+      py-24
       flex
       flex-col
       items-center
       justify-center
-      px-6
-      py-24
       "
     >
       <p className="uppercase tracking-[8px] text-cyan-400">
-        Gemini Future Simulation Engine
+        Future Transmission Terminal
       </p>
 
-      <h2 className="text-5xl md:text-7xl font-black text-center mt-4">
-        Ask The Future
+      <h2
+        className="
+        text-4xl
+        md:text-7xl
+        font-black
+        text-center
+        mt-4
+        "
+      >
+        Talk To The Future
       </h2>
 
-      <p className="mt-6 text-gray-400 text-center max-w-3xl">
-        Tell us a problem you face today. FutureVerse AI will predict how
-        humanity solves it in the future.
+      <p
+        className="
+        mt-6
+        text-gray-400
+        text-center
+        max-w-3xl
+        "
+      >
+        Describe a student problem. FutureVerse AI will scan the timeline and
+        reveal how humanity solves it.
       </p>
 
       <div
         className="
         mt-12
         w-full
-        max-w-4xl
+        max-w-5xl
         rounded-3xl
-        bg-white/5
         border
         border-white/10
+        bg-white/5
         backdrop-blur-xl
-        p-6
+        p-8
         "
       >
-        <div className="space-y-6 min-h-[300px]">
+                {!loading && !result && (
+          <div className="text-center py-16 text-gray-500">
+            <p className="text-lg">
+              Try asking:
+            </p>
 
-          {chat.length === 0 && (
-            <div className="text-center text-gray-500 py-20">
-              <p>Try asking:</p>
+            <div className="mt-6 space-y-3">
+              <p>📚 I have assignment overload.</p>
+              <p>📶 Campus WiFi is always failing.</p>
+              <p>💼 I am worried about placements.</p>
+              <p>⚠ Academic pressure is overwhelming.</p>
+            </div>
+          </div>
+        )}
 
-              <div className="mt-6 space-y-3">
-                <p>
-                  💬 I have problems completing assignments.
-                </p>
+        {loading && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="py-20 text-center"
+          >
+            <h3 className="text-3xl font-black text-cyan-400">
+              ⚡ Future Timeline Scan In Progress
+            </h3>
 
-                <p>
-                  💬 Campus WiFi is always failing.
-                </p>
+            <div className="mt-8 space-y-4 text-gray-300">
+              <p>Analyzing Campus Problem...</p>
+              <p>Searching Future Timeline...</p>
+              <p>Connecting To Future Civilization...</p>
+              <p>Generating Solution...</p>
+            </div>
+          </motion.div>
+        )}
 
-                <p>
-                  💬 I am worried about placements.
-                </p>
-
-                <p>
-                  💬 Academic pressure is overwhelming.
-                </p>
+        {result && (
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="space-y-8"
+          >
+            {/* Student Message */}
+            <div className="flex justify-end">
+              <div
+                className="
+                max-w-xl
+                rounded-3xl
+                bg-cyan-500
+                text-black
+                px-6
+                py-4
+                font-medium
+                "
+              >
+                {result.userQuestion}
               </div>
             </div>
-          )}
 
-          {chat.map((message, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
+            {/* AI Terminal */}
+            <div
+              className="
+              rounded-3xl
+              border
+              border-cyan-400/20
+              bg-black/30
+              p-8
+              "
             >
-              {message.type === "user" ? (
-                <div className="flex justify-end">
-                  <div
-                    className="
-                    max-w-lg
-                    px-6
-                    py-4
-                    rounded-3xl
-                    bg-cyan-500
-                    text-black
-                    font-medium
-                    "
-                  >
-                    {message.text}
-                  </div>
+              <div className="flex items-center gap-3">
+                <div className="w-3 h-3 rounded-full bg-green-400 animate-pulse" />
+
+                <p className="text-cyan-400 uppercase tracking-[4px]">
+                  Connected To Future Timeline
+                </p>
+              </div>
+
+              <h3 className="text-5xl font-black mt-6">
+                Year {result.year}
+              </h3>
+
+              <p className="text-cyan-400 text-xl mt-2">
+                {result.role}
+              </p>
+
+              {/* Route */}
+              <div
+                className="
+                mt-8
+                p-4
+                rounded-2xl
+                bg-white/5
+                border
+                border-white/10
+                "
+              >
+                <p className="text-gray-400 text-sm uppercase">
+                  Timeline Route
+                </p>
+
+                <h4 className="text-2xl font-bold mt-2">
+                  {result.route}
+                </h4>
+              </div>
+
+              {/* Response */}
+              <p
+                className="
+                mt-8
+                text-lg
+                text-gray-300
+                leading-relaxed
+                "
+              >
+                {result.response}
+              </p>
+
+              {/* Quote */}
+              <blockquote
+                className="
+                mt-8
+                border-l-4
+                border-cyan-400
+                pl-5
+                italic
+                text-cyan-200
+                "
+              >
+                "{result.quote}"
+              </blockquote>
+
+              {/* Impact Meter */}
+              <div className="mt-10">
+                <div className="flex justify-between">
+                  <span>Future Impact</span>
+
+                  <span>{result.impact}%</span>
                 </div>
-              ) : (
-                <div className="flex justify-start">
+
+                <div className="h-3 rounded-full bg-white/10 mt-2 overflow-hidden">
                   <div
-                    className="
-                    max-w-2xl
-                    px-6
-                    py-6
-                    rounded-3xl
-                    bg-white/5
-                    border
-                    border-cyan-400/20
-                    "
-                  >
-                    <p className="text-cyan-400 tracking-[4px] uppercase">
-                      Year {message.year}
-                    </p>
-
-                    <h3 className="text-3xl font-black mt-2">
-                      {message.role}
-                    </h3>
-
-                    <p className="mt-4 text-gray-300 leading-relaxed">
-                      {message.text}
-                    </p>
-
-                    <div
-                      className="
-                      mt-6
-                      px-4
-                      py-3
-                      rounded-xl
-                      bg-cyan-500/10
-                      border
-                      border-cyan-400/20
-                      "
-                    >
-                      🤖 Gemini Prediction Confidence: 99.8%
-                    </div>
-                  </div>
+                    className="h-full bg-cyan-400"
+                    style={{
+                      width: `${result.impact}%`,
+                    }}
+                  />
                 </div>
-              )}
-            </motion.div>
-          ))}
-        </div>
+              </div>
 
-        <div className="mt-8 flex gap-4">
+              {/* Confidence Meter */}
+              <div className="mt-8">
+                <div className="flex justify-between">
+                  <span>Prediction Confidence</span>
+
+                  <span>99.8%</span>
+                </div>
+
+                <div className="h-3 rounded-full bg-white/10 mt-2 overflow-hidden">
+                  <div
+                    className="h-full bg-green-400"
+                    style={{
+                      width: "99.8%",
+                    }}
+                  />
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        )}
+
+        {/* Input Area */}
+        <div className="mt-10 flex flex-col md:flex-row gap-4">
           <input
             type="text"
             value={question}
             onChange={(e) => setQuestion(e.target.value)}
-            placeholder="Example: I have a problem with assignments..."
+            placeholder="Example: I have assignment stress..."
             className="
-            flex-1
+            w-full
+            md:flex-1
             px-5
             py-4
             rounded-2xl
@@ -235,6 +390,7 @@ function FutureGenerator() {
             border
             border-white/10
             outline-none
+            text-white
             "
             onKeyDown={(e) => {
               if (e.key === "Enter") {
@@ -246,17 +402,22 @@ function FutureGenerator() {
           <button
             onClick={generateFuture}
             className="
+            w-full
+            md:w-auto
             px-8
             py-4
             rounded-2xl
             bg-cyan-500
+            hover:bg-cyan-400
+            transition-all
             text-black
             font-bold
             "
           >
-            Ask
+            Scan Timeline
           </button>
         </div>
+
       </div>
     </section>
   );
