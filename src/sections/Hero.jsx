@@ -4,20 +4,22 @@ import VideoBackground from "../components/VideoBackground";
 
 function Hero() {
   return (
-<section
-  id="year-2026"
-  className="relative h-screen overflow-hidden"
->
+    <section
+      id="year-2026"
+      className="relative h-screen overflow-hidden"
+    >
       <VideoBackground src="/videos/hero.mp4" />
 
       {/* Background Year */}
       <div
         className="
         absolute
-        left-8
+        left-4
+        md:left-8
         top-1/2
         -translate-y-1/2
-        text-[220px]
+        text-[120px]
+        sm:text-[180px]
         md:text-[320px]
         font-black
         text-white/[0.03]
@@ -28,7 +30,7 @@ function Hero() {
         2026
       </div>
 
-      {/* AI Crystal Glow */}
+      {/* Crystal Glow */}
       <div
         className="
         absolute
@@ -36,8 +38,12 @@ function Hero() {
         top-1/2
         -translate-x-1/2
         -translate-y-1/2
-        w-[450px]
-        h-[450px]
+        w-[280px]
+        h-[280px]
+        sm:w-[350px]
+        sm:h-[350px]
+        md:w-[450px]
+        md:h-[450px]
         rounded-full
         bg-cyan-500/20
         blur-[180px]
@@ -45,8 +51,8 @@ function Hero() {
         "
       />
 
-      {/* Floating Problems */}
-      <div className="absolute inset-0 z-10 pointer-events-none">
+      {/* Floating Problems - Desktop Only */}
+      <div className="hidden md:block absolute inset-0 z-10 pointer-events-none">
 
         <div className="absolute top-48 left-24 text-white/60 text-xl">
           📚 Assignment Overload
@@ -61,7 +67,7 @@ function Hero() {
         </div>
 
         <div className="absolute bottom-48 right-32 text-white/60 text-xl">
-          ⚠️ Academic Pressure
+          ⚠ Academic Pressure
         </div>
 
       </div>
@@ -98,10 +104,12 @@ function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           className="
-          tracking-[10px]
+          tracking-[8px]
+          md:tracking-[10px]
           text-cyan-400
           uppercase
-          text-sm
+          text-xs
+          sm:text-sm
           md:text-lg
           "
         >
@@ -113,10 +121,12 @@ function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
           className="
-          text-6xl
+          text-5xl
+          sm:text-6xl
           md:text-8xl
           font-black
-          mt-6
+          mt-4
+          md:mt-6
           leading-tight
           "
         >
@@ -131,8 +141,10 @@ function Hero() {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.3 }}
           className="
-          mt-8
-          text-2xl
+          mt-6
+          md:mt-8
+          text-xl
+          sm:text-2xl
           md:text-4xl
           font-light
           text-white/90
@@ -148,11 +160,13 @@ function Hero() {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.6 }}
           className="
-          mt-10
-          text-lg
+          mt-8
+          text-base
+          sm:text-lg
           md:text-2xl
           text-gray-300
           max-w-4xl
+          px-4
           "
         >
           An Interactive AI Documentary About How Student Problems Inspired
@@ -163,9 +177,12 @@ function Hero() {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           className="
-          mt-12
-          px-10
-          py-5
+          mt-10
+          md:mt-12
+          px-8
+          md:px-10
+          py-4
+          md:py-5
           rounded-full
           border
           border-cyan-400/40
@@ -188,14 +205,15 @@ function Hero() {
         }}
         className="
         absolute
-        bottom-10
+        bottom-8
+        md:bottom-10
         left-1/2
         -translate-x-1/2
         z-20
         "
       >
         <FaArrowDown
-          size={35}
+          size={30}
           className="text-cyan-400"
         />
       </motion.div>
